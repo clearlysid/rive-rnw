@@ -1,68 +1,31 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * Generated with the TypeScript template
- * https://github.com/react-native-community/react-native-template-typescript
- *
- * @format
- */
-
-import React, { type PropsWithChildren } from 'react';
+import React from 'react';
 import {
   SafeAreaView,
   ScrollView,
   StatusBar,
   StyleSheet,
   Text,
-  useColorScheme,
   View,
 } from 'react-native';
 
-import {
-  Colors,
-  Header
-} from 'react-native/Libraries/NewAppScreen';
-
 
 const App = () => {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
 
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
+    <SafeAreaView style={{ backgroundColor: 'white', height: '100%' }}>
+      <StatusBar />
       <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <View style={styles.sectionContainer}>
-            <Text
-              style={[
-                styles.sectionTitle,
-                {
-                  color: isDarkMode ? Colors.white : Colors.black,
-                },
-              ]}>
-              {`Step One`}
+        contentInsetAdjustmentBehavior="automatic" >
+        <View>
+          <View style={styles.section}>
+            <Text style={styles.title}>
+              Wait a second...
             </Text>
-            <Text
-              style={[
-                styles.sectionDescription,
-                {
-                  color: isDarkMode ? Colors.light : Colors.dark,
-                },
-              ]}>
+            <Text style={styles.subtext}>
+              You're telling me that I can write my UI once and have it work across iOS, Android AND the Web 🤯
+            </Text>
+
+            <Text style={styles.subtext}>
               Edit <Text style={styles.highlight}>App.tsx</Text> to change this
               screen and then come back to see your edits.
             </Text>
@@ -74,18 +37,23 @@ const App = () => {
 };
 
 const styles = StyleSheet.create({
-  sectionContainer: {
+  section: {
     marginTop: 32,
     paddingHorizontal: 24,
   },
-  sectionTitle: {
-    fontSize: 24,
+  title: {
+    fontSize: 32,
+    marginBottom: 16,
     fontWeight: '600',
+    color: '#8000ff'
   },
-  sectionDescription: {
+  subtext: {
     marginTop: 8,
-    fontSize: 18,
+    fontSize: 20,
+    lineHeight: 28,
     fontWeight: '400',
+    color: '#444444',
+    marginBottom: 8
   },
   highlight: {
     fontWeight: '700',
