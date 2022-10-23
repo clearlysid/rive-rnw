@@ -2,12 +2,21 @@
   "name": "rive-rnw",
   "version": "0.1.0",
   "description": "Rive runtime for react-native-web",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "author": "Siddharth / @clearlysid",
-  "repository": "https://github.com/clearlysid/rive-rnw.git",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/clearlysid/rive-rnw.git"
+  },
   "license": "MIT",
   "private": false,
+  "files": [
+    "lib/**/*"
+  ],
   "devDependencies": {
+    "@types/react": "^18.0.21",
+    "@types/react-native": "^0.70.6",
     "typescript": "^4.8.4"
   },
   "dependencies": {
@@ -17,7 +26,8 @@
   },
   "peerDependencies": {
     "react": "*",
-    "react-native": "*"
+    "react-native": "*",
+    "react-native-web": "*"
   },
   "scripts": {
     "build": "tsc"
