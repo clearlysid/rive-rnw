@@ -6,5 +6,20 @@
   "author": "Siddharth / @clearlysid",
   "repository": "https://github.com/clearlysid/rive-rnw.git",
   "license": "MIT",
-  "private": false
+  "private": false,
+  "devDependencies": {
+    "typescript": "^4.8.4"
+  },
+  "dependencies": {
+    "@rive-app/react-canvas": "^3.0.32",
+    "@rive-app/react-webgl": "^3.0.32",
+    "rive-react-native": "^3.0.41"
+  },
+  "peerDependencies": {
+    "react": "*",
+    "react-native": "*"
+  },
+  "scripts": {
+    "build": "tsc"
+  }
 }
