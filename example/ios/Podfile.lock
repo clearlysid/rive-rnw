@@ -368,6 +368,10 @@ PODS:
     - React-jsi (= 0.70.3)
     - React-logger (= 0.70.3)
     - React-perflogger (= 0.70.3)
+  - rive-react-native (3.0.41):
+    - React-Core
+    - RiveRuntime (= 2.0.12)
+  - RiveRuntime (2.0.12)
   - SocketRocket (0.6.0)
   - Yoga (1.14.0)
   - YogaKit (1.18.1):
@@ -432,6 +436,7 @@ DEPENDENCIES:
   - React-RCTVibration (from `../node_modules/react-native/Libraries/Vibration`)
   - React-runtimeexecutor (from `../node_modules/react-native/ReactCommon/runtimeexecutor`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
+  - rive-react-native (from `../node_modules/rive-react-native`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -449,6 +454,7 @@ SPEC REPOS:
     - fmt
     - libevent
     - OpenSSL-Universal
+    - RiveRuntime
     - SocketRocket
     - YogaKit
 
@@ -519,6 +525,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/runtimeexecutor"
   ReactCommon:
     :path: "../node_modules/react-native/ReactCommon"
+  rive-react-native:
+    :path: "../node_modules/rive-react-native"
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -569,10 +577,12 @@ SPEC CHECKSUMS:
   React-RCTVibration: b9a58ffdd18446f43d493a4b0ecd603ee86be847
   React-runtimeexecutor: e9b1f9310158a1e265bcdfdfd8c62d6174b947a2
   ReactCommon: 01064177e66d652192c661de899b1076da962fd9
+  rive-react-native: c87587ed13ad58b8d6c57d1e4500a429128865cd
+  RiveRuntime: 00c431bf347aaad3a3d0ed381241cf945b537e1a
   SocketRocket: fccef3f9c5cedea1353a9ef6ada904fde10d6608
   Yoga: 2ed968a4f060a92834227c036279f2736de0fce3
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: e9774a3132cc2072013fd07ec1ade8155544b823
+PODFILE CHECKSUM: 39c73269aa51a35c1905c69d8ab5ba378f51c2c3
 
 COCOAPODS: 1.11.3
