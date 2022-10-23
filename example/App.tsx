@@ -1,13 +1,14 @@
 import React from 'react';
 import {
-  SafeAreaView,
-  ScrollView,
+  View,
+  Text,
   StatusBar,
   StyleSheet,
-  Text,
-  View,
+  ScrollView,
+  SafeAreaView,
 } from 'react-native';
-
+// import Rive from 'rive-rnw'
+// import Rive from 'rive-react-native'
 
 const App = () => {
 
@@ -16,7 +17,7 @@ const App = () => {
       <StatusBar />
       <ScrollView
         contentInsetAdjustmentBehavior="automatic" >
-        <View>
+        <View style={styles.container}>
           <View style={styles.section}>
             <Text style={styles.title}>
               Wait a second...
@@ -24,12 +25,12 @@ const App = () => {
             <Text style={styles.subtext}>
               You're telling me that I can write my UI once and have it work across iOS, Android AND the Web 🤯
             </Text>
-
             <Text style={styles.subtext}>
               Edit <Text style={styles.highlight}>App.tsx</Text> to change this
               screen and then come back to see your edits.
             </Text>
           </View>
+          {/* <Rive url='https://cdn.rive.app/animations/vehicles.riv' /> */}
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -37,6 +38,10 @@ const App = () => {
 };
 
 const styles = StyleSheet.create({
+  container: {
+    maxWidth: 500,
+    marginHorizontal: 'auto'
+  },
   section: {
     marginTop: 32,
     paddingHorizontal: 24,
