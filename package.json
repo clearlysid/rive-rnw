@@ -1,0 +1,10 @@
+{
+  "name": "rive-rnw",
+  "version": "0.1.0",
+  "description": "Rive runtime for react-native-web",
+  "main": "index.js",
+  "author": "Siddharth / @clearlysid",
+  "repository": "https://github.com/clearlysid/rive-rnw.git",
+  "license": "MIT",
+  "private": false
+}
