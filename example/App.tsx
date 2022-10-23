@@ -7,7 +7,7 @@ import {
   ScrollView,
   SafeAreaView,
 } from 'react-native';
-// import Rive from 'rive-rnw'
+import Rive from 'rive-rnw'
 // import Rive from 'rive-react-native'
 
 const App = () => {
@@ -30,7 +30,11 @@ const App = () => {
               screen and then come back to see your edits.
             </Text>
           </View>
-          {/* <Rive url='https://cdn.rive.app/animations/vehicles.riv' /> */}
+          <Rive
+            url='https://github.com/clearlysid/rive-rnw/blob/311e877adff4e49cd4eaa543a906f21b058cfa5d/example/public/people.riv'
+            style={{ height: 500, width: 500 }}
+            autoplay={true}
+          />
         </View>
       </ScrollView>
     </SafeAreaView>

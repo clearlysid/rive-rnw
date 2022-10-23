@@ -1,8 +1,9 @@
 import React, { ReactElement, useRef } from "react";
 import { View, Text, Platform, ViewStyle } from "react-native"
-import RiveReactNative from "rive-react-native";
+// import RiveReactNative from "rive-react-native";
 import type { LoopMode, Fit, Alignment, RNRiveError } from 'rive-react-native'
 import type { XOR } from "./helpers";
+import riveCanvas from "@rive-app/canvas";
 import { useRive as useRiveCanvas } from "@rive-app/react-canvas";
 
 type RiveProps = {
@@ -26,16 +27,15 @@ type RiveProps = {
 
 export const Rive = (props: RiveProps) => {
 
-	const riveRef = useRef(null)
 
-	console.log('rive-rnw initialized')
+	console.log('rive-rnw testing yolo')
 
 	// For iOS/Android, use the official React Native runtime
 	if (Platform.OS === "ios" || Platform.OS === "android") {
 		return (
 			<View>
 				<Text>App Stuff</Text>
-				<RiveReactNative {...props} ref={riveRef} />
+				{/* <RiveReactNative {...props} ref={riveRef} /> */}
 			</View>
 		)
 	}
@@ -79,15 +79,15 @@ export const Rive = (props: RiveProps) => {
 			<View>
 				<Text>Web Stuff</Text>
 				<View style={props.style} testID={props.testID}>
-					{props.children &&
+					{/* {props.children &&
 						<View style={{
 							position: 'absolute',
 							width: '100%',
 							height: '100%'
 						}}>
 							{props.children}
-						</View>}
-					<RiveComponent ref={riveRef} />
+						</View>} */}
+					<RiveComponent />
 				</View>
 
 			</View>
