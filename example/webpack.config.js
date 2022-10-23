@@ -29,16 +29,6 @@ const babelLoaderConfiguration = {
 	},
 };
 
-const imageLoaderConfiguration = {
-	test: /\.(gif|jpe?g|png)$/,
-	use: {
-		loader: 'url-loader',
-		options: {
-			name: '[name].[ext]',
-		},
-	},
-};
-
 module.exports = {
 	entry: {
 		app: path.join(__dirname, 'index.js'),
@@ -51,13 +41,12 @@ module.exports = {
 	resolve: {
 		extensions: ['.web.tsx', '.web.ts', '.tsx', '.ts', '.web.js', '.js'],
 		alias: {
-			'react-native$': 'react-native-web',
+			'react-native$': path.resolve('./web/react-native')
 		},
 	},
 	module: {
 		rules: [
-			babelLoaderConfiguration,
-			imageLoaderConfiguration,
+			babelLoaderConfiguration
 		],
 	},
 	plugins: [
