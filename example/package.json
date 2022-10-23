@@ -13,9 +13,7 @@
     "react-native": "0.70.3",
     "react-native-web": "^0.18.9",
     "rive-react-native": "^3.0.41",
-    "rive-rnw": "file:.yalc/rive-rnw"
-  },
-  "devDependencies": {
+    "rive-rnw": "file:.yalc/rive-rnw",
     "react-dom": "^18.2.0",
     "@babel/core": "^7.12.9",
     "@babel/runtime": "^7.12.5",
