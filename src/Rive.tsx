@@ -1,7 +1,9 @@
-import React, { useEffect } from "react";
+import React, { ReactElement, useRef } from "react";
 import { View, Text, Platform, ViewStyle } from "react-native"
 import RiveReactNative from "rive-react-native";
 import type { LoopMode, Fit, Alignment, RNRiveError } from 'rive-react-native'
+import type { XOR } from "./helpers";
+import { useRive as useRiveCanvas } from "@rive-app/react-canvas";
 
 type RiveProps = {
 	onPlay?: (animationName: string, isStateMachine: boolean) => void;
@@ -18,33 +20,76 @@ type RiveProps = {
 	animationName?: string;
 	stateMachineName?: string;
 	autoplay?: boolean;
-} & {
-	resourceName: string; url?: never
-} | {
-	resourceName?: never; url: string
-};
+	children?: ReactElement;
+} & XOR<{ resourceName: string }, { url: string }>;
 
-export const Rive = () => {
 
-	useEffect(() => {
-		console.log('rive-rnw is running')
-	})
+export const Rive = (props: RiveProps) => {
 
-	// For iOS/Android, we use the official React Native runtime and pass on the relevant props
+	const riveRef = useRef(null)
+
+	console.log('rive-rnw initialized')
+
+	// For iOS/Android, use the official React Native runtime
 	if (Platform.OS === "ios" || Platform.OS === "android") {
 		return (
 			<View>
 				<Text>App Stuff</Text>
-				<RiveReactNative url="https://cdn.rive.app/animations/vehicles.riv" />
+				<RiveReactNative {...props} ref={riveRef} />
 			</View>
 		)
 	}
 
 	// For Web, we use the WASM/JS runtime directly
 	if (Platform.OS === "web") {
+
+		const src = props.resourceName || props.url
+		const autoplay = props.autoplay
+		const artboard = props.artboardName
+		const animations = props.animationName
+		const stateMachines = props.stateMachineName
+		// const onPlay = props.onPlay
+		// const onPause = props.onPause
+		// const onStop = props.onStop
+		// const onLoop = props.onLoopEnd
+		// const onStateChange = props.onStateChanged
+
+		const layout = {
+			fit: props.fit,
+			alignment: props.alignment
+		}
+
+		const { RiveComponent } = useRiveCanvas({
+			src,
+			autoplay,
+			artboard,
+			animations,
+			stateMachines,
+			// @ts-expect-error
+			layout,
+			// onPlay,
+			// onPause,
+			// onStop,
+			// onLoop,
+			// onStateChange,
+		});
+
 		return (
+
 			<View>
 				<Text>Web Stuff</Text>
+				<View style={props.style} testID={props.testID}>
+					{props.children &&
+						<View style={{
+							position: 'absolute',
+							width: '100%',
+							height: '100%'
+						}}>
+							{props.children}
+						</View>}
+					<RiveComponent ref={riveRef} />
+				</View>
+
 			</View>
 		)
 	}
