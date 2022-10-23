@@ -1,1 +1,2 @@
-console.log("rive-rnw loaded")
+import { Rive } from './Rive'
+export default Rive;

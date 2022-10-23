@@ -1,12 +1,10 @@
 {
   "compilerOptions": {
 		"baseUrl": "./",
-		"allowUnreachableCode": false,
-    "allowUnusedLabels": false,
     "declaration": true,
+    "isolatedModules": true,
     "outDir": "./lib",
     "esModuleInterop": true,
-    "importsNotUsedAsValues": "error",
     "forceConsistentCasingInFileNames": true,
     "jsx": "react",
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
@@ -16,13 +14,11 @@
     "noImplicitReturns": true,
     "noImplicitUseStrict": false,
     "noStrictGenericChecks": false,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,
     "target": "esnext"
   },
   "include": ["src"],
-  "exclude": ["node_modules", "**/__tests__/*"],
+  "exclude": ["node_modules", "**/__tests__/*"]
 }

@@ -17,19 +17,18 @@
   "devDependencies": {
     "@types/react": "^18.0.21",
     "@types/react-native": "^0.70.6",
+    "rive-react-native": "^3.0.41",
     "typescript": "^4.8.4"
   },
-  "dependencies": {
-    "@rive-app/react-canvas": "^3.0.32",
-    "@rive-app/react-webgl": "^3.0.32",
-    "rive-react-native": "^3.0.41"
-  },
+  "dependencies": {},
   "peerDependencies": {
     "react": "*",
     "react-native": "*",
-    "react-native-web": "*"
+    "react-native-web": "*",
+    "rive-react-native": "*"
   },
   "scripts": {
-    "build": "tsc"
+    "build-diff": "node ./build.js && yalc publish",
+    "build": "tsc && yalc publish"
   }
 }
