@@ -13,9 +13,9 @@ import Rive from 'rive-rnw'
 const Title = ({ children }) => <Text style={styles.title}>{children}</Text>
 const Paragraph = ({ children }) => <Text style={styles.paragraph}>{children}</Text>
 
-const Button = ({ text, color }: { text: String, color?: ViewStyle['backgroundColor'] }) => {
-
-  return <View style={[styles.button, { backgroundColor: color }]}>
+const Button = (
+  { text, color }: { text: String, color?: ViewStyle['backgroundColor'] }
+) => <View style={[styles.button, { backgroundColor: color }]}>
     <Text style={{
       color: 'black',
       fontSize: 20,
@@ -25,7 +25,6 @@ const Button = ({ text, color }: { text: String, color?: ViewStyle['backgroundCo
       {text}
     </Text>
   </View>
-}
 
 const App = () => {
 
@@ -42,10 +41,11 @@ const App = () => {
             url="https://cdn.rive.app/animations/vehicles.riv"
             style={{
               width: '100%',
-              height: 300,
+              aspectRatio: 2 / 1,
               marginTop: 24
             }}
             autoplay={true}
+            fit={'cover'}
           />
 
           <Button text="Play" color="darkorange" />
@@ -58,39 +58,39 @@ const App = () => {
 const styles = StyleSheet.create({
   main: { height: '100%', backgroundColor: '#05171f' },
   container: {
-    maxWidth: 540,
     width: '100%',
-    marginHorizontal: 'auto',
+    maxWidth: 540,
     paddingHorizontal: 24,
-    paddingVertical: 48,
+    marginHorizontal: 'auto',
+    paddingVertical: Platform.OS === 'web' ? 16 : 48,
   },
   title: {
-    marginTop: 48,
     fontSize: 48,
-    textAlign: 'center',
-    paddingBottom: 16,
+    marginTop: 48,
+    color: 'white',
     fontWeight: '800',
-    color: 'white'
+    paddingBottom: 16,
+    textAlign: 'center'
   },
   paragraph: {
-    textAlign: 'center',
     fontSize: 20,
     lineHeight: 28,
-    letterSpacing: 0.4,
-    fontWeight: '300',
     color: 'white',
+    fontWeight: '300',
+    letterSpacing: 0.4,
+    textAlign: 'center',
   },
   button: {
-    alignSelf: 'center',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingVertical: 16,
-    paddingHorizontal: 28,
-    backgroundColor: '#8000ff',
-    borderRadius: 8,
     width: 200,
-    marginVertical: 16,
+    borderRadius: 8,
+    display: 'flex',
+    marginVertical: 36,
+    alignSelf: 'center',
+    paddingVertical: 16,
+    alignItems: 'center',
+    paddingHorizontal: 28,
+    justifyContent: 'center',
+    backgroundColor: '#8000ff',
   }
 });
 
