@@ -78,4 +78,4 @@ If you like this project, you should [follow me on Twitter](https://twitter.com/
 
 ## License
 
-MIT Licensed. Copyright (c) Siddharth Jha 2021.
+MIT Licensed. Copyright (c) Siddharth Jha 2022.
