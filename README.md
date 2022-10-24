@@ -2,7 +2,7 @@
 
 ![rive-rnw-hero](https://user-images.githubusercontent.com/30227512/197517924-6ac12076-2963-4822-8e61-98e49361a94d.png)
 
-This library is (yet another) wrapper around the iOS/Android runtime and the WASM/JS runtime, providing a singular component and ref pattern for cross-platform applications built using [react-native-web](https://necolas.github.io/react-native-web/)
+This library is (yet another) wrapper around the iOS/Android runtime and the WASM/JS runtime, providing a singular component and ref pattern for cross-platform applications built using [react-native-web](https://necolas.github.io/react-native-web/).
 
 ## Table of contents
 
@@ -33,12 +33,12 @@ Then use it in your app like so:
 import Rive from "rive-rnw";
 
 function App() {
-	return (
-		<Rive
-			url="https://cdn.rive.app/animations/vehicles.riv"
-			style={{ width: 400, height: 400 }}
-		/>
-	);
+  return (
+    <Rive
+      url="https://cdn.rive.app/animations/vehicles.riv"
+      style={{ width: 400, height: 400 }}
+    />
+  );
 }
 ```
 
@@ -46,7 +46,7 @@ function App() {
 
 This API is a superset of the official React Native Runtime API. For a detailed list of props and methods available to you and for more advanced use-cases, refer to this [documentation](https://help.rive.app/runtimes/overview/react-native/props).
 
-🚧 SOME FEATURES ARE STILL UNDER CONTRSUCTION
+🚧 SOME FEATURES ARE STILL UNDER CONTRSUCTION 🚧
 
 ### Examples
 
@@ -74,7 +74,7 @@ I would also love for more people to start contributing to open-source. Any PRs 
 
 Thanks to the [Rive team](https://github.com/rive-app) for making a great product!
 
-If you like this project, you should [follow me on Twitter](https://twitter.com/clearlysid)!
+If you like this project, you should [follow me on Twitter](https://twitter.com/clearlysid).
 
 ## License
 
