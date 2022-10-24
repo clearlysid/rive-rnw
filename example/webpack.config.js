@@ -35,7 +35,7 @@ module.exports = {
 	},
 	output: {
 		path: path.resolve(appDirectory, 'dist'),
-		publicPath: '/',
+		publicPath: process.argv.mode !== 'development' ? '/rive-rnw' : '/',
 		filename: 'example.bundle.js',
 	},
 	resolve: {
