@@ -4903,8 +4903,10 @@ rive-react-native@^3.0.41:
   resolved "https://registry.yarnpkg.com/rive-react-native/-/rive-react-native-3.0.41.tgz#6822ccad21fc4585ba859fe20a301b18e93824e5"
   integrity sha512-N4BQuQwsPK98n8AITrMh/iG/AjCikKm6f1Wt+EMJa6hl987h68mM2z/4vul+CuigkMreiiIH6kUSOAMKMK98KA==
 
-"rive-rnw@file:.yalc/rive-rnw":
+rive-rnw@^0.1.0:
   version "0.1.0"
+  resolved "https://registry.yarnpkg.com/rive-rnw/-/rive-rnw-0.1.0.tgz#9bf5f7cb18478788394976274d67c9b0e47698dd"
+  integrity sha512-mN4J9pG2LJp6n1L4lJHQxRMyet9mYPctAPze2KSiu3MzxpUgCy0aOwJc7sbShjrw1a1UhvDmgzSJ/Ftw5ajVZg==
   dependencies:
     "@rive-app/canvas" "^1.0.93"
     rive-react-native "^3.0.41"
