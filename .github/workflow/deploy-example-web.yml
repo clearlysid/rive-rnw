@@ -1,0 +1,26 @@
+name: Deploy Example to GitHub Pages
+on:
+  push:	
+    branches:	
+      - main
+
+jobs:
+  deploy:
+    name: Deploy to GitHub Pages
+    runs-on: ubuntu-latest    
+    steps:
+    - uses: actions/checkout@master
+    - name: Use Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 16.x
+    - name: npm install and build
+      run: |
+        npm run build-example-web
+    - name: Deploy
+      uses: s0/git-publish-subdir-action@v2.5.1
+      env:
+        REPO: self
+        BRANCH: gh-pages
+        FOLDER: example/dist
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
