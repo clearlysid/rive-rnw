@@ -15,9 +15,9 @@ This library is (yet another) wrapper around the iOS/Android runtime and the WAS
 
 [Rive](https://rive.app) is a real-time interactive design and animation tool that helps teams create and run interactive animations anywhere. This lightweight library allows developers to load Rive animations into their apps.
 
-- 🏡 [Rive Homepage](https://rive.app/)
-- 📘 [General help docs](https://help.rive.app/)
-- 🛠 [Resources for building in Rive](https://rive.app/resources/)
+-   🏡 [Rive Homepage](https://rive.app/)
+-   📘 [General help docs](https://help.rive.app/)
+-   🛠 [Resources for building in Rive](https://rive.app/resources/)
 
 ## Getting Started
 
@@ -33,12 +33,12 @@ Then use it in your app like so:
 import Rive from "rive-rnw";
 
 function App() {
-  return (
-    <Rive
-      url="https://cdn.rive.app/animations/vehicles.riv"
-      style={{ width: 400, height: 400 }}
-    />
-  );
+	return (
+		<Rive
+			url="https://cdn.rive.app/animations/vehicles.riv"
+			style={{ width: 400, height: 400 }}
+		/>
+	);
 }
 ```
 
@@ -52,7 +52,7 @@ This API is a superset of the official React Native Runtime API. For a detailed 
 
 An example project is provided at `/example` of this repo. It works across all platforms specified and is easy to build off of.
 
--   [ ] TODO: add deployed example link for reference.
+-   [x] TODO: add deployed example link for reference.
 
 ## Supported Platforms
 
