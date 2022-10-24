@@ -35,7 +35,16 @@ export const Rive = (props: RiveProps) => {
 	// For iOS/Android, use the official React Native runtime
 	if (Platform.OS === "ios" || Platform.OS === "android") {
 		return (
-			<RiveReactNative url={props.url as any} style={props.style} autoplay={props.autoplay} />
+			<RiveReactNative
+				url={props.url as any}
+				style={props.style}
+				autoplay={props.autoplay}
+				fit={props.fit}
+				alignment={props.alignment}
+				animationName={props.animationName}
+				artboardName={props.artboardName}
+				stateMachineName={props.stateMachineName}
+			/>
 		)
 	}
 
@@ -81,8 +90,8 @@ export const Rive = (props: RiveProps) => {
 
 const styles = StyleSheet.create({
 	children: {
-		position: 'absolute',
 		width: '100%',
 		height: '100%',
+		position: 'absolute',
 	},
 })

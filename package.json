@@ -30,6 +30,7 @@
   },
   "scripts": {
     "dev": "tsc --watch",
-    "build": "tsc"
+    "build": "tsc",
+    "build-example-web": "cd example && yarn && yarn build-web"
   }
 }
