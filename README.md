@@ -2,7 +2,7 @@
 
 ![rive-rnw-hero](https://user-images.githubusercontent.com/30227512/197517924-6ac12076-2963-4822-8e61-98e49361a94d.png)
 
-This library is (yet another) wrapper around the iOS/Android runtime and the WASM/JS runtime, providing a singular component and ref pattern for cross-platform applications built using [react-native-web](https://necolas.github.io/react-native-web/).
+This library is a wrapper around Rive's iOS/Android runtime and the Web/Canvas runtime, providing a singular component and ref pattern for cross-platform applications built using [react-native-web](https://necolas.github.io/react-native-web/).
 
 ## Table of contents
 
