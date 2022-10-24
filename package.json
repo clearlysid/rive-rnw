@@ -21,17 +21,15 @@
   },
   "dependencies": {
     "@rive-app/canvas": "^1.0.93",
-    "@rive-app/react-canvas": "^3.0.32",
     "rive-react-native": "^3.0.41"
   },
   "peerDependencies": {
     "react": "*",
     "react-native": "*",
-    "react-native-web": "*",
-    "rive-react-native": "*"
+    "react-native-web": "*"
   },
   "scripts": {
     "dev": "tsc --watch",
-    "build": "tsc && yalc publish"
+    "build": "tsc"
   }
 }
