@@ -7,8 +7,20 @@ import {
   ScrollView,
   SafeAreaView,
 } from 'react-native';
-// import Rive from 'rive-rnw'
-// import Rive from 'rive-react-native'
+import Rive from 'rive-rnw'
+
+const Section = ({ title, text }: { title?: String, text: String }) => {
+  return <View style={styles.section}>
+    {title &&
+      <Text style={styles.title}>
+        {title}
+      </Text>
+    }
+    <Text style={styles.subtext}>
+      {text}
+    </Text>
+  </View>
+}
 
 const App = () => {
 
@@ -18,19 +30,16 @@ const App = () => {
       <ScrollView
         contentInsetAdjustmentBehavior="automatic" >
         <View style={styles.container}>
-          <View style={styles.section}>
-            <Text style={styles.title}>
-              Wait a second...
-            </Text>
-            <Text style={styles.subtext}>
-              You're telling me that I can write my UI once and have it work across iOS, Android AND the Web 🤯
-            </Text>
-            <Text style={styles.subtext}>
-              Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-              screen and then come back to see your edits.
-            </Text>
-          </View>
-          {/* <Rive url='https://cdn.rive.app/animations/vehicles.riv' /> */}
+          <Section
+            title="Rive for React Native Web"
+            text="Interactive animations that work across iOS, Android and Web with a single declarative API 🥳"
+          />
+
+          <Rive
+            url='https://cdn.rive.app/animations/vehicles.riv'
+            style={{ width: '100%', height: 300, marginTop: 24 }}
+            autoplay={true}
+          />
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -39,7 +48,7 @@ const App = () => {
 
 const styles = StyleSheet.create({
   container: {
-    maxWidth: 500,
+    maxWidth: 540,
     marginHorizontal: 'auto'
   },
   section: {
@@ -48,7 +57,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 32,
-    marginBottom: 16,
+    paddingBottom: 16,
     fontWeight: '600',
     color: '#8000ff'
   },
@@ -58,11 +67,7 @@ const styles = StyleSheet.create({
     lineHeight: 28,
     fontWeight: '400',
     color: '#444444',
-    marginBottom: 8
-  },
-  highlight: {
-    fontWeight: '700',
-  },
+  }
 });
 
 export default App;

@@ -2,17 +2,10 @@
 # yarn lockfile v1
 
 
-"@rive-app/canvas@1.0.93", "@rive-app/canvas@^1.0.93":
+"@rive-app/canvas@^1.0.93":
   version "1.0.93"
   resolved "https://registry.yarnpkg.com/@rive-app/canvas/-/canvas-1.0.93.tgz#a68ddddafb73bbdec312fe52ba0795c7027805b4"
   integrity sha512-okA3P9eW9/veilGlNOpGNX/nyFTptu2auD94Y/tS/kJyk0Yid3GmSrEgb5PkriclXyM3yEjcvwtiZzp2Nk691Q==
-
-"@rive-app/react-canvas@^3.0.32":
-  version "3.0.32"
-  resolved "https://registry.yarnpkg.com/@rive-app/react-canvas/-/react-canvas-3.0.32.tgz#3eed2b383a6a1e5af9ccbbaaa66947b8f7c93ab8"
-  integrity sha512-ve+LMiUaUoFViIEKrLrsMQ0J3k/ICua3PjWCQlBJ7W455SHxCRC2beRHT/cQmwZaG1LKfVpf+ztp4zKA6TAaNw==
-  dependencies:
-    "@rive-app/canvas" "1.0.93"
 
 "@types/prop-types@*":
   version "15.7.5"
