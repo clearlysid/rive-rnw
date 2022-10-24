@@ -1,10 +1,11 @@
-import React, { ReactElement, useRef } from "react";
-import { View, Text, Platform, ViewStyle } from "react-native"
-// import RiveReactNative from "rive-react-native";
-import type { LoopMode, Fit, Alignment, RNRiveError } from 'rive-react-native'
+import React, { ReactElement, useEffect, useRef } from "react";
+import { View, Platform, ViewStyle, StyleSheet } from "react-native"
+import { Layout, Rive as RiveCanvas } from "@rive-app/canvas";
+import RiveReactNative from "rive-react-native";
+
+// types
 import type { XOR } from "./helpers";
-import riveCanvas from "@rive-app/canvas";
-import { useRive as useRiveCanvas } from "@rive-app/react-canvas";
+import type { Fit, LoopMode, Alignment, RNRiveError } from 'rive-react-native'
 
 type RiveProps = {
 	onPlay?: (animationName: string, isStateMachine: boolean) => void;
@@ -27,20 +28,18 @@ type RiveProps = {
 
 export const Rive = (props: RiveProps) => {
 
+	const riveRef = useRef(null)
 
-	console.log('rive-rnw testing yolo')
+	const children = props.children
 
 	// For iOS/Android, use the official React Native runtime
 	if (Platform.OS === "ios" || Platform.OS === "android") {
 		return (
-			<View>
-				<Text>App Stuff</Text>
-				{/* <RiveReactNative {...props} ref={riveRef} /> */}
-			</View>
+			<RiveReactNative url={props.url as any} style={props.style} autoplay={props.autoplay} />
 		)
 	}
 
-	// For Web, we use the WASM/JS runtime directly
+	// For Web, use the WASM/JS runtime directly
 	if (Platform.OS === "web") {
 
 		const src = props.resourceName || props.url
@@ -48,51 +47,42 @@ export const Rive = (props: RiveProps) => {
 		const artboard = props.artboardName
 		const animations = props.animationName
 		const stateMachines = props.stateMachineName
-		// const onPlay = props.onPlay
-		// const onPause = props.onPause
-		// const onStop = props.onStop
-		// const onLoop = props.onLoopEnd
-		// const onStateChange = props.onStateChanged
 
-		const layout = {
-			fit: props.fit,
-			alignment: props.alignment
-		}
-
-		const { RiveComponent } = useRiveCanvas({
-			src,
-			autoplay,
-			artboard,
-			animations,
-			stateMachines,
-			// @ts-expect-error
-			layout,
-			// onPlay,
-			// onPause,
-			// onStop,
-			// onLoop,
-			// onStateChange,
-		});
+		useEffect(() => {
+			const r = new RiveCanvas({
+				canvas: riveRef.current,
+				src,
+				autoplay,
+				artboard,
+				animations,
+				stateMachines,
+				layout: new Layout({
+					fit: props.fit,
+					alignment: props.alignment
+				}),
+				onLoad: () => {
+					r.resizeDrawingSurfaceToCanvas();
+				},
+			})
+		}, [])
 
 		return (
-
-			<View>
-				<Text>Web Stuff</Text>
-				<View style={props.style} testID={props.testID}>
-					{/* {props.children &&
-						<View style={{
-							position: 'absolute',
-							width: '100%',
-							height: '100%'
-						}}>
-							{props.children}
-						</View>} */}
-					<RiveComponent />
-				</View>
-
+			<View style={props.style} testID={props.testID}>
+				{children &&
+					<View style={styles.children}>{children}</View>}
+				<canvas ref={riveRef}>
+				</canvas>
 			</View>
 		)
 	}
 
 	return null
-} 
+}
+
+const styles = StyleSheet.create({
+	children: {
+		position: 'absolute',
+		width: '100%',
+		height: '100%',
+	},
+})
