@@ -52,8 +52,6 @@ This API is a superset of the official React Native Runtime API. For a detailed 
 
 An example project is provided at `/example` of this repo. It works across all platforms specified and is easy to build off of.
 
--   [x] TODO: add deployed example link for reference.
-
 ## Supported Platforms
 
 Since this library has a dependency on the [Rive React Native](https://github.com/rive-app/rive-react-native/) and [Rive WASM](https://github.com/rive-app/rive-wasm) runtimes, the supported devices align with each of these dependencies minimum supported devices, as well as the minimum device requirements of the React Native framework.
