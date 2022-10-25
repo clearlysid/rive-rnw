@@ -6,7 +6,8 @@ import {
   StyleSheet,
   ScrollView,
   Platform,
-  ViewStyle
+  ViewStyle,
+  TouchableOpacity
 } from 'react-native';
 import Rive from 'rive-rnw'
 
@@ -15,7 +16,11 @@ const Paragraph = ({ children }) => <Text style={styles.paragraph}>{children}</T
 
 const Button = (
   { text, color }: { text: String, color?: ViewStyle['backgroundColor'] }
-) => <View style={[styles.button, { backgroundColor: color || 'white' }]}>
+) => <TouchableOpacity
+  style={[styles.button, { backgroundColor: color || 'white' }]}
+  accessibilityRole="button"
+  onPress={() => console.log('clicked')}
+>
     <Text style={{
       color: 'black',
       fontSize: 20,
@@ -24,29 +29,31 @@ const Button = (
     }}>
       {text}
     </Text>
-  </View>
+  </TouchableOpacity>
 
 const App = () => {
 
   return (
     <View style={styles.main}>
-      <StatusBar barStyle='light-content' />
+      <StatusBar barStyle='light-content' backgroundColor={'#05171F'} />
       <ScrollView>
         <View style={styles.container}>
-
           <Title>rive-rnw 🥳</Title>
           <Paragraph>
             A cross-platform runtime for Rive that works on iOS, Android & Web!
           </Paragraph>
 
           <Rive
-            url="https://cdn.rive.app/animations/vehicles.riv"
+            url="https://headout-tech.s3.amazonaws.com/rive-test/spring_demo.riv"
+            autoplay={true}
+            animationName={'butterfly'}
             style={{
               width: '100%',
-              aspectRatio: 2 / 1,
+              aspectRatio: 1 / 1
             }}
-            autoplay={true}
           />
+
+          <Button text={'wheeeee'} color="darkorange" />
         </View>
       </ScrollView>
     </View>
