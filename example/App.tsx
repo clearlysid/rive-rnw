@@ -34,9 +34,9 @@ const App = () => {
       <ScrollView>
         <View style={styles.container}>
 
-          <Title>🎃 Happy Halloween!</Title>
+          <Title>rive-rnw 🥳</Title>
           <Paragraph>
-            We're writing an app for {Platform.OS}! 🥳
+            A cross-platform runtime for Rive that works on iOS, Android & Web!
           </Paragraph>
 
           <Rive

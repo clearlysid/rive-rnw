@@ -29,33 +29,35 @@ const babelLoaderConfiguration = {
 	},
 };
 
-module.exports = {
-	entry: {
-		app: path.join(__dirname, 'index.js'),
-	},
-	output: {
-		path: path.resolve(appDirectory, 'dist'),
-		publicPath: process.argv.mode !== 'development' ? '/rive-rnw' : '/',
-		filename: 'example.bundle.js',
-	},
-	resolve: {
-		extensions: ['.web.tsx', '.web.ts', '.tsx', '.ts', '.web.js', '.js'],
-		alias: {
-			'react-native$': path.resolve('./web/react-native')
+module.exports = (env, argv) => {
+	return {
+		entry: {
+			app: path.join(__dirname, 'index.js'),
 		},
-	},
-	module: {
-		rules: [
-			babelLoaderConfiguration
+		output: {
+			path: path.resolve(appDirectory, 'dist'),
+			publicPath: argv.mode === 'production' ? '/rive-rnw' : '/',
+			filename: 'example.bundle.js',
+		},
+		resolve: {
+			extensions: ['.web.tsx', '.web.ts', '.tsx', '.ts', '.web.js', '.js'],
+			alias: {
+				'react-native$': path.resolve('./web/react-native')
+			},
+		},
+		module: {
+			rules: [
+				babelLoaderConfiguration
+			],
+		},
+		plugins: [
+			new HtmlWebpackPlugin({
+				template: path.join(__dirname, 'index.html'),
+			}),
+			new webpack.DefinePlugin({
+				// See: https://github.com/necolas/react-native-web/issues/349
+				__DEV__: JSON.stringify(true),
+			}),
 		],
-	},
-	plugins: [
-		new HtmlWebpackPlugin({
-			template: path.join(__dirname, 'index.html'),
-		}),
-		new webpack.DefinePlugin({
-			// See: https://github.com/necolas/react-native-web/issues/349
-			__DEV__: JSON.stringify(true),
-		}),
-	],
-};
+	}
+} 
