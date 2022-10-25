@@ -15,7 +15,7 @@ const Paragraph = ({ children }) => <Text style={styles.paragraph}>{children}</T
 
 const Button = (
   { text, color }: { text: String, color?: ViewStyle['backgroundColor'] }
-) => <View style={[styles.button, { backgroundColor: color }]}>
+) => <View style={[styles.button, { backgroundColor: color || 'white' }]}>
     <Text style={{
       color: 'black',
       fontSize: 20,
@@ -35,20 +35,18 @@ const App = () => {
         <View style={styles.container}>
 
           <Title>🎃 Happy Halloween!</Title>
-          <Paragraph>We're writing an app for {Platform.OS}! 🥳</Paragraph>
+          <Paragraph>
+            We're writing an app for {Platform.OS}! 🥳
+          </Paragraph>
 
           <Rive
             url="https://cdn.rive.app/animations/vehicles.riv"
             style={{
               width: '100%',
               aspectRatio: 2 / 1,
-              marginTop: 24
             }}
             autoplay={true}
-            fit={'cover'}
           />
-
-          <Button text="Play" color="darkorange" />
         </View>
       </ScrollView>
     </View>
@@ -78,6 +76,7 @@ const styles = StyleSheet.create({
     color: 'white',
     fontWeight: '300',
     letterSpacing: 0.4,
+    paddingBottom: 24,
     textAlign: 'center',
   },
   button: {

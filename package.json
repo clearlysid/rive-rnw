@@ -4,11 +4,15 @@
   "description": "Rive runtime for react-native-web",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
-  "author": "Siddharth / @clearlysid",
+  "author": "Siddharth <siddharth99c@gmail.com> (https://www.sid.me)",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/clearlysid/rive-rnw.git"
   },
+  "bugs": {
+    "url": "https://github.com/clearlysid/rive-rnw/issues"
+  },
+  "homepage": "https://github.com/clearlysid/rive-rnw",
   "license": "MIT",
   "private": false,
   "files": [
