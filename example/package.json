@@ -6,8 +6,8 @@
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "start": "react-native start",
-    "web": "webpack serve --mode=development --hot --config webpack.config.js",
-    "build-web": "webpack"
+    "web": "webpack serve --mode=development --hot",
+    "build-web": "webpack --mode=production"
   },
   "dependencies": {
     "@babel/core": "^7.12.9",
