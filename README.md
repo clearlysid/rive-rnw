@@ -33,12 +33,12 @@ Then use it in your app like so:
 import Rive from "rive-rnw";
 
 function App() {
-	return (
-		<Rive
-			url="https://cdn.rive.app/animations/vehicles.riv"
-			style={{ width: 400, height: 400 }}
-		/>
-	);
+  return (
+    <Rive
+      url="https://cdn.rive.app/animations/vehicles.riv"
+      style={{ width: 400, height: 400 }}
+    />
+  );
 }
 ```
 
