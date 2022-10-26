@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "@rive-app/canvas": "^1.0.93",
+    "@rive-app/webgl": "^1.0.89",
     "rive-react-native": "^3.0.41"
   },
   "peerDependencies": {

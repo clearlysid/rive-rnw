@@ -1,4 +1,4 @@
-# Rive (for React Native Web) — ⚠️ WIP
+# Rive for React Native Web (⚠️ WIP ⚠️)
 
 ![rive-rnw-hero](https://user-images.githubusercontent.com/30227512/197517924-6ac12076-2963-4822-8e61-98e49361a94d.png)
 
@@ -46,11 +46,9 @@ function App() {
 
 This API is a superset of the official React Native Runtime API. For a detailed list of props and methods available to you and for more advanced use-cases, refer to this [documentation](https://help.rive.app/runtimes/overview/react-native/props).
 
-🚧 SOME FEATURES ARE STILL UNDER CONTRSUCTION 🚧
-
 ### Examples
 
-An example project is provided at `/example` of this repo. It works across all platforms specified and is easy to build off of.
+I've provided a demo at `/example` of this repo. It works on all platforms mentioned below and is easy to build off of — here's the 🌐 [Web Link](https://clearlysid.github.io/rive-rnw/).
 
 ## Supported Platforms
 
@@ -72,7 +70,7 @@ I would also love for more people to start contributing to open-source. Any PRs 
 
 Thanks to the [Rive team](https://github.com/rive-app) for making a great product!
 
-If you like this project, you should [follow me on Twitter](https://twitter.com/clearlysid).
+If you like this project, consider giving it a star ⭐ on Github and following me on [Twitter](https://twitter.com/clearlysid) 🐦.
 
 ## License
 

@@ -1,18 +1,18 @@
-import React, { ReactElement, useEffect, useRef } from "react";
-import { View, Platform, ViewStyle, StyleSheet } from "react-native"
-import { Layout, Rive as RiveCanvas } from "@rive-app/canvas";
-import RiveReactNative from "rive-react-native";
+import React, { useEffect, useRef, useState } from "react";
+import { View, Platform, ViewStyle } from "react-native"
+import { Rive as RiveWebGl } from "@rive-app/webgl";
+import { Layout, EventCallback, Rive as RiveCanvas } from "@rive-app/canvas";
+import RiveRN, { Fit, Alignment, RNRiveError } from "rive-react-native";
+import { XOR } from "./helpers";
 
-// types
-import type { XOR } from "./helpers";
-import type { Fit, LoopMode, Alignment, RNRiveError } from 'rive-react-native'
+type RiveEvent = (animationName: string, isStateMachine: boolean) => void
 
 type RiveProps = {
-	onPlay?: (animationName: string, isStateMachine: boolean) => void;
-	onPause?: (animationName: string, isStateMachine: boolean) => void;
-	onStop?: (animationName: string, isStateMachine: boolean) => void;
-	onLoopEnd?: (animationName: string, loopMode: LoopMode) => void;
-	onStateChanged?: (stateMachineName: string, stateName: string) => void;
+	onPlay?: RiveEvent
+	onPause?: RiveEvent
+	onStop?: RiveEvent
+	onLoopEnd?: RiveEvent
+	onStateChanged?: RiveEvent
 	onError?: (rnRiveError: RNRiveError) => void;
 	fit?: Fit;
 	style?: ViewStyle;
@@ -22,64 +22,119 @@ type RiveProps = {
 	animationName?: string;
 	stateMachineName?: string;
 	autoplay?: boolean;
-	children?: ReactElement;
+	children?: any;
 } & XOR<{ resourceName: string }, { url: string }>;
 
 
-export const Rive = (props: RiveProps) => {
+
+type Props = {
+	onLoad?: EventCallback;
+	onLoadError?: EventCallback;
+	useWebGl?: boolean;
+} & RiveProps
+
+export const Rive = ({
+	children,
+	onPlay,
+	onPause,
+	onStop,
+	onLoopEnd,
+	onStateChanged,
+	onError,
+	style,
+	autoplay = true,
+	resourceName,
+	url,
+	alignment = Alignment.Center,
+	fit = Fit.Contain,
+	artboardName,
+	animationName,
+	stateMachineName,
+	testID,
+	onLoad,
+	onLoadError,
+	useWebGl = false,
+}: Props) => {
 
 	const riveRef = useRef(null)
 
-	const children = props.children
-
 	// For iOS/Android, use the official React Native runtime
 	if (Platform.OS === "ios" || Platform.OS === "android") {
+
 		return (
-			<RiveReactNative
-				url={props.url as any}
-				style={props.style}
-				autoplay={props.autoplay}
-				fit={props.fit}
-				alignment={props.alignment}
-				animationName={props.animationName}
-				artboardName={props.artboardName}
-				stateMachineName={props.stateMachineName}
-			/>
+			// @ts-expect-error
+			<RiveRN
+				ref={riveRef}
+				style={style}
+				autoplay={autoplay}
+				resourceName={resourceName}
+				url={url}
+				alignment={alignment}
+				fit={fit}
+				animationName={animationName}
+				artboardName={artboardName}
+				stateMachineName={stateMachineName}
+				testID={testID}
+			>
+				{children}
+			</RiveRN>
 		)
 	}
 
 	// For Web, use the WASM/JS runtime directly
 	if (Platform.OS === "web") {
 
-		const src = props.resourceName || props.url
-		const autoplay = props.autoplay
-		const artboard = props.artboardName
-		const animations = props.animationName
-		const stateMachines = props.stateMachineName
+		const [size, setSize] = useState<{ width: Number, height: Number }>({
+			height: 0,
+			width: 0
+		})
 
 		useEffect(() => {
-			const r = new RiveCanvas({
+			let r: RiveCanvas | RiveWebGl;
+
+			const options = {
 				canvas: riveRef.current,
-				src,
 				autoplay,
-				artboard,
-				animations,
-				stateMachines,
+				src: resourceName || url,
 				layout: new Layout({
-					fit: props.fit,
-					alignment: props.alignment
+					alignment: alignment,
+					fit: fit
 				}),
+				animations: animationName,
+				artboard: artboardName,
+				stateMachines: stateMachineName,
 				onLoad: () => {
 					r.resizeDrawingSurfaceToCanvas();
-				},
-			})
+				}
+			}
+
+			if (useWebGl) {
+				// @ts-expect-error
+				r = new RiveWebGl(options)
+			} else {
+				r = new RiveCanvas(options)
+			}
+
 		}, [])
 
 		return (
-			<View style={props.style} testID={props.testID}>
+			<View style={style}
+				testID={testID}
+				onLayout={(event) => {
+					const { width, height } = event.nativeEvent.layout
+					setSize({ width, height })
+				}}>
 				{children &&
-					<View style={styles.children}>{children}</View>}
-				<canvas ref={riveRef}>
+					<View style={{
+						width: '100%',
+						height: '100%',
+						position: 'absolute',
+					}}>{children}</View>}
+
+				<canvas ref={riveRef}
+					height={`${size.height}`}
+					width={`${size.width}`}
+				>
 				</canvas>
 			</View>
 		)
@@ -87,11 +142,3 @@ export const Rive = (props: RiveProps) => {
 
 	return null
 }
-
-const styles = StyleSheet.create({
-	children: {
-		width: '100%',
-		height: '100%',
-		position: 'absolute',
-	},
-})
