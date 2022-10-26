@@ -17,15 +17,13 @@ type RiveProps = {
 	fit?: Fit;
 	style?: ViewStyle;
 	testID?: string;
+	autoplay?: boolean;
+	children?: any;
 	alignment?: Alignment;
 	artboardName?: string;
 	animationName?: string;
 	stateMachineName?: string;
-	autoplay?: boolean;
-	children?: any;
 } & XOR<{ resourceName: string }, { url: string }>;
-
-
 
 type Props = {
 	onLoad?: EventCallback;
@@ -41,19 +39,19 @@ export const Rive = ({
 	onLoopEnd,
 	onStateChanged,
 	onError,
-	style,
-	autoplay = true,
-	resourceName,
+	onLoad,
+	onLoadError,
 	url,
-	alignment = Alignment.Center,
-	fit = Fit.Contain,
+	style,
+	testID,
+	resourceName,
 	artboardName,
 	animationName,
 	stateMachineName,
-	testID,
-	onLoad,
-	onLoadError,
+	autoplay = true,
 	useWebGl = false,
+	fit = Fit.Contain,
+	alignment = Alignment.Center,
 }: Props) => {
 
 	const riveRef = useRef(null)
@@ -64,17 +62,17 @@ export const Rive = ({
 		return (
 			// @ts-expect-error
 			<RiveRN
+				url={url}
+				fit={fit}
 				ref={riveRef}
 				style={style}
-				autoplay={autoplay}
-				resourceName={resourceName}
-				url={url}
-				alignment={alignment}
-				fit={fit}
-				animationName={animationName}
-				artboardName={artboardName}
-				stateMachineName={stateMachineName}
 				testID={testID}
+				autoplay={autoplay}
+				alignment={alignment}
+				resourceName={resourceName}
+				artboardName={artboardName}
+				animationName={animationName}
+				stateMachineName={stateMachineName}
 			>
 				{children}
 			</RiveRN>
@@ -93,23 +91,23 @@ export const Rive = ({
 			let r: RiveCanvas | RiveWebGl;
 
 			const options = {
-				canvas: riveRef.current,
 				autoplay,
+				canvas: riveRef.current,
+				artboard: artboardName,
 				src: resourceName || url,
+				animations: animationName,
+				stateMachines: stateMachineName,
 				layout: new Layout({
 					alignment: alignment,
 					fit: fit
 				}),
-				animations: animationName,
-				artboard: artboardName,
-				stateMachines: stateMachineName,
 				onLoad: () => {
 					r.resizeDrawingSurfaceToCanvas();
 				}
 			}
 
 			if (useWebGl) {
-				// @ts-expect-error
+				// @ts-expect-error — "type" of the options object is the same in both
 				r = new RiveWebGl(options)
 			} else {
 				r = new RiveCanvas(options)
@@ -131,7 +129,8 @@ export const Rive = ({
 						position: 'absolute',
 					}}>{children}</View>}
 
-				<canvas ref={riveRef}
+				<canvas
+					ref={riveRef}
 					height={`${size.height}`}
 					width={`${size.width}`}
 				>
