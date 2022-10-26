@@ -33,12 +33,12 @@ Then use it in your app like so:
 import Rive from "rive-rnw";
 
 function App() {
-	return (
-		<Rive
-			url="https://cdn.rive.app/animations/vehicles.riv"
-			style={{ width: 400, height: 400 }}
-		/>
-	);
+  return (
+    <Rive
+      url="https://cdn.rive.app/animations/vehicles.riv"
+      style={{ width: 400, height: 400 }}
+    />
+  );
 }
 ```
 
@@ -51,8 +51,6 @@ This API is a superset of the official React Native Runtime API. For a detailed 
 ### Examples
 
 An example project is provided at `/example` of this repo. It works across all platforms specified and is easy to build off of.
-
--   [x] TODO: add deployed example link for reference.
 
 ## Supported Platforms
 
