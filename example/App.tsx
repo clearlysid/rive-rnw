@@ -11,6 +11,8 @@ import {
 } from 'react-native';
 import Rive from 'rive-rnw'
 
+export const RIV_FILE_LINK = `https://headout-tech.s3.amazonaws.com/rive-test/spring_demo.riv`
+
 const Title = ({ children }) => <Text style={styles.title}>{children}</Text>
 const Paragraph = ({ children }) => <Text style={styles.paragraph}>{children}</Text>
 
@@ -44,16 +46,13 @@ const App = () => {
           </Paragraph>
 
           <Rive
-            url="https://headout-tech.s3.amazonaws.com/rive-test/spring_demo.riv"
-            autoplay={true}
-            animationName={'butterfly'}
+            url={RIV_FILE_LINK}
+            stateMachineName="Motion"
             style={{
               width: '100%',
               aspectRatio: 1 / 1
             }}
           />
-
-          <Button text={'wheeeee'} color="darkorange" />
         </View>
       </ScrollView>
     </View>
