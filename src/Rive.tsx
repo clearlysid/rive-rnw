@@ -1,12 +1,9 @@
-import React, { useEffect, useRef } from "react";
-import { View, Platform, ViewStyle, Pressable } from "react-native"
-import { Layout, Rive as RiveCanvas } from "@rive-app/canvas";
-import RiveRN from "rive-react-native";
-import { EventCallback } from "@rive-app/canvas";
-
-// types
-import type { XOR } from "./helpers";
-import { Fit, Alignment, RNRiveError, RiveRef as RiveRNRef } from 'rive-react-native'
+import React, { useEffect, useRef, useState } from "react";
+import { View, Platform, ViewStyle } from "react-native"
+import { Rive as RiveWebGl } from "@rive-app/webgl";
+import { Layout, EventCallback, Rive as RiveCanvas } from "@rive-app/canvas";
+import RiveRN, { Fit, Alignment, RNRiveError } from "rive-react-native";
+import { XOR } from "./helpers";
 
 type RiveEvent = (animationName: string, isStateMachine: boolean) => void
 
@@ -30,11 +27,11 @@ type RiveProps = {
 
 
 
-type Props = RiveProps & {
-	onLoad?: EventCallback,
-	onLoadError?: EventCallback,
-
-}
+type Props = {
+	onLoad?: EventCallback;
+	onLoadError?: EventCallback;
+	useWebGl?: boolean;
+} & RiveProps
 
 export const Rive = ({
 	children,
@@ -54,6 +51,9 @@ export const Rive = ({
 	animationName,
 	stateMachineName,
 	testID,
+	onLoad,
+	onLoadError,
+	useWebGl = false,
 }: Props) => {
 
 	const riveRef = useRef(null)
@@ -75,15 +75,24 @@ export const Rive = ({
 				artboardName={artboardName}
 				stateMachineName={stateMachineName}
 				testID={testID}
-			/>
+			>
+				{children}
+			</RiveRN>
 		)
 	}
 
 	// For Web, use the WASM/JS runtime directly
 	if (Platform.OS === "web") {
 
+		const [size, setSize] = useState<{ width: Number, height: Number }>({
+			height: 0,
+			width: 0
+		})
+
 		useEffect(() => {
-			const r = new RiveCanvas({
+			let r: RiveCanvas | RiveWebGl;
+
+			const options = {
 				canvas: riveRef.current,
 				autoplay,
 				src: resourceName || url,
@@ -96,21 +105,38 @@ export const Rive = ({
 				stateMachines: stateMachineName,
 				onLoad: () => {
 					r.resizeDrawingSurfaceToCanvas();
-				},
-			})
+				}
+			}
+
+			if (useWebGl) {
+				// @ts-expect-error
+				r = new RiveWebGl(options)
+			} else {
+				r = new RiveCanvas(options)
+			}
+
 		}, [])
 
 		return (
-			<Pressable style={style} testID={testID}>
+			<View style={style}
+				testID={testID}
+				onLayout={(event) => {
+					const { width, height } = event.nativeEvent.layout
+					setSize({ width, height })
+				}}>
 				{children &&
 					<View style={{
 						width: '100%',
 						height: '100%',
 						position: 'absolute',
 					}}>{children}</View>}
-				<canvas ref={riveRef}>
+
+				<canvas ref={riveRef}
+					height={`${size.height}`}
+					width={`${size.width}`}
+				>
 				</canvas>
-			</Pressable>
+			</View>
 		)
 	}
 
