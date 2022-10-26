@@ -9,6 +9,9 @@
     "type": "git",
     "url": "git+https://github.com/clearlysid/rive-rnw.git"
   },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "bugs": {
     "url": "https://github.com/clearlysid/rive-rnw/issues"
   },
